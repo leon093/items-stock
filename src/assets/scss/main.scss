@@ -1,0 +1,250 @@
+$colorBrand: #ff4739;
+$colorLight: #fff;
+$colorDark: #6c757d;
+
+$body: #fff;
+$btnColor: $colorBrand;
+$btnTextColor: #fff;
+$borderColor: #ccc;
+$radius: 4px;
+$pagePadding: 20px;
+
+$imgPath: '../images';
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    background: $body;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    text-align: left;
+    padding: 4px;
+}
+
+button {
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    background: transparent;
+}
+
+.container {
+    width: 100%;
+    max-width: 960px;
+    padding-left: $pagePadding;
+    padding-right: $pagePadding;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.center-block {
+    display: flex;
+    justify-content: center;
+}
+
+// иконки
+.close-icon {
+    display: block;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    transition: 400ms;
+    background-size: contain;
+    background: url("#{$imgPath}/close.svg") no-repeat;
+
+    &:hover {
+        transform: rotate(90deg);
+    }
+
+    &:active {
+        transform: scale(0.9);
+    }
+}
+
+// кнопки
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: $btnColor;
+    color: $btnTextColor;
+    transition: 200ms;
+
+    &:hover {
+        background: darken($btnColor, 5%);
+    }
+
+    &:active {
+        transform: scale(0.98);
+    }
+
+    &--big {
+        width: 100%;
+        max-width: 240px;
+        font-weight: bold;
+        box-shadow: 0 4px 2px rgba(0, 0, 0, 0.2);
+
+        &:active {
+            box-shadow: none;
+        }
+    }
+
+    &--dark {
+        background: $colorDark;
+
+        &:hover {
+            background: darken($colorDark, 5%);
+        }
+    }
+}
+
+// таблицы
+.table {
+    tr:not(:last-child) {
+        border-bottom: 1px solid $borderColor;
+    }
+
+    tr:first-child {
+        border-top: 1px solid $borderColor;
+    }
+}
+
+// формы
+.inp {
+    width: 100%;
+    padding: 4px;
+    border: 1px solid $borderColor;
+    border-radius: $radius;
+}
+
+// шапка
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 0;
+
+    &__logo {
+        text-transform: uppercase;
+    }
+
+    &__descr {
+        color: $colorBrand;
+        font-weight: bold;
+    }
+}
+
+// бургер меню
+.burger {
+    width: 25px;
+
+    &__line {
+        height: 2px;
+        background: #555;
+
+        &:not(:last-child) {
+            margin-bottom: 3px;
+        }
+    }
+}
+
+// контент
+.main {
+    height: calc(100vh - 53px);
+    display: flex;
+    flex-direction: column;
+    padding: 30px 0;
+
+    &__content {
+        flex-grow: 1;
+    }
+}
+
+// модальное окно
+.modal {
+    position: fixed;
+    z-index: 2;
+    inset: 0;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: $pagePadding;
+    padding-right: $pagePadding;
+    pointer-events: none;
+    
+    &__content {
+        width: 100%;
+        max-width: 400px;
+        background: $colorLight;
+        border-radius: $radius;
+        pointer-events: auto;
+    }
+
+    &__head,
+    &__footer {
+        padding: 10px 10px;
+    }
+
+    &__head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__main {
+        padding: 20px;
+        border-top: 1px solid $borderColor;
+        border-bottom: 1px solid $borderColor;
+    }
+
+    &__footer {
+        display: flex;
+        justify-content: flex-end;
+        gap: 20px;
+    }
+
+    &__title {
+        margin: 0;
+        line-height: 1;
+        font-size: 18px;
+    }
+}
+
+// подложка для модального окна
+.modal-wrapper {
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0, 0.5);
+}
+
+.form {
+    &__label {
+        display: block;
+        margin-bottom: 3px;
+    }
+
+    &__item:not(:last-child) {
+        margin-bottom: 20px;
+    }
+}
