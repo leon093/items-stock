@@ -59,6 +59,15 @@ button {
     justify-content: center;
 }
 
+.text-error {
+    color: #ff4739;
+}
+
+.empty {
+    text-align: center;
+    color: #555;
+}
+
 // иконки
 .close-icon {
     display: block;
@@ -131,6 +140,10 @@ button {
     padding: 4px;
     border: 1px solid $borderColor;
     border-radius: $radius;
+
+    &--error {
+        border-color: #ff4739;
+    }
 }
 
 // шапка
@@ -173,6 +186,7 @@ button {
 
     &__content {
         flex-grow: 1;
+        margin-bottom: 20px;
     }
 }
 

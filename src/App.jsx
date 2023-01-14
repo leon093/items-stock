@@ -10,7 +10,7 @@ function App() {
         items.push(item);
         localStorage.setItem("items", JSON.stringify(items));
     };
-    
+
     return (
         <div className="container">
             <header className="header">
@@ -41,16 +41,24 @@ function App() {
                                 <th>Date and time</th>
                             </tr>
 
-                            {items.map((item, index) => {
-                                return (
-                                    <tr key={index}>
-                                        <td>{index + 1}</td>
-                                        <td>{item.title}</td>
-                                        <td>{item.price}</td>
-                                        <td>{item.date}</td>
-                                    </tr>
-                                );
-                            })}
+                            {items.length ? (
+                                items.map((item, index) => {
+                                    return (
+                                        <tr key={index}>
+                                            <td>{index + 1}</td>
+                                            <td>{item.title}</td>
+                                            <td>{item.price}</td>
+                                            <td>{item.date}</td>
+                                        </tr>
+                                    );
+                                })
+                            ) : (
+                                <tr>
+                                    <td className="empty" colSpan={4}>
+                                        Пока пусто
+                                    </td>
+                                </tr>
+                            )}
                         </tbody>
                     </table>
                 </div>
