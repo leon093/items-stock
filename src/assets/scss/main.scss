@@ -179,7 +179,7 @@ button {
 
 // контент
 .main {
-    height: calc(100vh - 53px);
+    min-height: calc(100vh - 53px);
     display: flex;
     flex-direction: column;
     padding: 30px 0;
