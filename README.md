@@ -4,7 +4,7 @@
 Клонируем проект к себе на компьютер или скачиваем zip-архивом.
 `git clone https://github.com/leon093/items-stock.git`  
 Используется сборщик [https://vitejs.dev/](vite)  
-Для стилей используется препроцессор [https://sass-lang.com/] (SCSS) 
+Для стилей используется препроцессор [https://sass-lang.com/](SCSS) 
 
 ## Установка
 Устанавливаем зависимости   
