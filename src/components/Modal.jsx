@@ -1,8 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect  } from "react";
 
 const Modal = ({ open, onClose, addItemProp }) => {
-    if (!open) return null;
-
     const [title, setTitle] = useState("");
     const [price, setPrice] = useState("");
     const [date, setDate] = useState("");
@@ -49,7 +47,12 @@ const Modal = ({ open, onClose, addItemProp }) => {
         onClose();
     };
 
+    useEffect(() => {
+        document.body.style.overflow = open ? 'hidden' : ''
+    });
+
     return (
+        (open) &&
         <div className="modal-wrapper" onClick={onClose}>
             <div className="modal" onClick={(e) => e.stopPropagation()}>
                 <div className="modal__content">
