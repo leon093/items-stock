@@ -52,8 +52,7 @@ const Modal = ({ open, onClose, addItemProp }) => {
     });
 
     return (
-        (open) &&
-        <div className="modal-wrapper" onClick={onClose}>
+        <div className={`modal-wrapper ${open ? 'modal-wrapper--open' : ''}`} onClick={onClose}>
             <div className="modal" onClick={(e) => e.stopPropagation()}>
                 <div className="modal__content">
                     <div className="modal__head">
