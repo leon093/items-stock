@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 
 const Modal = ({ open, onClose, addItemProp }) => {
     const [title, setTitle] = useState("");
@@ -54,17 +54,11 @@ const Modal = ({ open, onClose, addItemProp }) => {
         onClose();
     };
 
-    const titleInput = useRef(null);
-
     // при открытии модалльного окна убираем скролл страницы
     useEffect(() => {
         document.body.style.overflow = open ? 'hidden' : '';
     });
    
-    // Автофокус на первый инпут
-    if (open) {
-        setTimeout(() => titleInput.current.focus(), 200) 
-    }
     return (
         <div className={`modal-wrapper ${open ? 'modal-wrapper--open' : ''}`} onClick={onClose}>
             <div className="modal" onClick={(e) => e.stopPropagation()}>
@@ -95,7 +89,6 @@ const Modal = ({ open, onClose, addItemProp }) => {
                                     onChange={(event) =>
                                         setTitle(event.target.value)
                                     }
-                                    ref={titleInput}
                                 />
                                 {error && !title.length ? (
                                     <div className="text-error">
