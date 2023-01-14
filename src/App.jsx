@@ -5,9 +5,15 @@ import Modal from "./components/Modal";
 function App() {
     const [openModal, setOpenModal] = useState(false);
 
+    /* список item-ов, если есть в localStorage ключ items c массивом item-ов,
+    то присваиваем массив переменной. Если ключа нет, то по умолчанию присваиваем пустой массив */
     let items = JSON.parse(localStorage.getItem("items") || "[]");
+    
     const addItem = (item) => {
+        // добавляем данные полей с формы создания item-а в массив
         items.push(item);
+        
+        // записываем массив в localStorage, чтобы при перезагрузке страницы они не пропадали
         localStorage.setItem("items", JSON.stringify(items));
     };
 
