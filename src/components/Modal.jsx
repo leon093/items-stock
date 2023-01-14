@@ -1,4 +1,4 @@
-import React, { useState, useEffect  } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 
 const Modal = ({ open, onClose, addItemProp }) => {
     const [title, setTitle] = useState("");
@@ -7,8 +7,10 @@ const Modal = ({ open, onClose, addItemProp }) => {
     const [error, setError] = useState(false);
     const [errorPrice, setErrorPrice] = useState(false);
 
+    // добавляем ноль если в аргументе функции пришло число меньше 10
     const addZeroDate = (prop) => prop <= 9 ? '0' : '';
 
+    // форматируем дату нужного нам формата
     const formatDateTime = (date) => {
         const day = new Date(date).getDate();
         const month = new Date(date).getMonth() + 1;
@@ -22,6 +24,7 @@ const Modal = ({ open, onClose, addItemProp }) => {
         return `${fullDate} ${time}`;
     };
 
+    // форматируем цену в формат USD
     const formatUSD = (price) => {
         return new Intl.NumberFormat('en-US', {
             style: 'currency',
@@ -29,6 +32,10 @@ const Modal = ({ open, onClose, addItemProp }) => {
         }).format(price);
     }
 
+    /*
+        собираем данные с полей и добавляем в список item-ов,
+        проверяем поля, после добавления item-а чистим поля
+    */
     const addItem = () => {
         if (Number(price) < 0) {
             setErrorPrice(true);
@@ -47,10 +54,17 @@ const Modal = ({ open, onClose, addItemProp }) => {
         onClose();
     };
 
-    useEffect(() => {
-        document.body.style.overflow = open ? 'hidden' : ''
-    });
+    const titleInput = useRef(null);
 
+    // при открытии модалльного окна убираем скролл страницы
+    useEffect(() => {
+        document.body.style.overflow = open ? 'hidden' : '';
+    });
+   
+    // Автофокус на первый инпут
+    if (open) {
+        setTimeout(() => titleInput.current.focus(), 200) 
+    }
     return (
         <div className={`modal-wrapper ${open ? 'modal-wrapper--open' : ''}`} onClick={onClose}>
             <div className="modal" onClick={(e) => e.stopPropagation()}>
@@ -81,6 +95,7 @@ const Modal = ({ open, onClose, addItemProp }) => {
                                     onChange={(event) =>
                                         setTitle(event.target.value)
                                     }
+                                    ref={titleInput}
                                 />
                                 {error && !title.length ? (
                                     <div className="text-error">
